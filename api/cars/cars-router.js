@@ -31,4 +31,25 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const changes = req.body
+        const data = await Car.update(id, changes)
+        res.json(data)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        await Car.remove(id)
+        res.json({ message: `Car with ID ${id} was deleted.` })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 module.exports = router;

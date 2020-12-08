@@ -6,11 +6,11 @@ exports.up = function(knex) {
       table.text('make', 128).notNullable();
       table.text('model', 128).notNullable();
       table.integer('mileage').notNullable();
-      table.text('transmission type');
-      table.text('status of title');
+      table.text('transmissionType');
+      table.text('titleStatus');
   })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropIfTableExists('cars');
+  return knex.schema.dropTableIfExists('cars');
 };
